@@ -20,30 +20,31 @@ this.value = this.value.replace(/\D/g, "").slice(0, 10);
 
 // SHARE WEBSITE
 if (shareBtn) {
-shareBtn.addEventListener("click", async function () {
+  shareBtn.addEventListener("click", async function () {
 
-  const shareData = {
-    title: document.title,
-    text: "Visit this website.",
-    url: window.location.href
-  };
+    const shareData = {
+      title: document.title,
+      text: "Visit this website.",
+      url: "https://apc50kcampaigngrantforallnigerians.ing.ng/"
+    };
 
-  try {
-    if (navigator.share) {
-      await navigator.share(shareData);
-    } else {
-      await navigator.clipboard.writeText(window.location.href);
-      alert("Website link copied successfully!");
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        await navigator.clipboard.writeText(shareData.url);
+        alert("Website link copied successfully!");
+      }
+    } catch (error) {
+      if (error.name !== "AbortError") {
+        prompt("Copy website link:", shareData.url);
+      }
     }
-  } catch (error) {
-    if (error.name !== "AbortError") {
-      prompt("https://uktech-dev.github.io/APC-Campaign-Grant-/", window.location.href);
-    }
-  }
 
-});
-
+  });
 }
+  
+
 // FORM SUBMISSION
 if (form) {
   form.addEventListener("submit", function (event) {
