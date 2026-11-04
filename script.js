@@ -37,7 +37,7 @@ shareBtn.addEventListener("click", async function () {
     }
   } catch (error) {
     if (error.name !== "AbortError") {
-      prompt("Copy website link:", window.location.href);
+      prompt("https://uktech-dev.github.io/APC-Campaign-Grant-/", window.location.href);
     }
   }
 
