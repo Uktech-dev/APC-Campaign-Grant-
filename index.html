@@ -100,50 +100,63 @@
             
           </select>
         </div>
-<b>If Other, Add Your Bank Name<b/>
-      <input type="text" placeholder="Bank Name">
-    
-        <div class="form-group">
-          <label for="accountName">Account Name</label>
-          <input
-            type="text"
-            id="accountName"
-            placeholder="Enter account name"
-            required
-          >
-        </div>
 
-        <div class="form-group">
-          <label for="accountNumber">Account Number</label>
-          <input
-            type="text"
-            id="accountNumber"
-            inputmode="numeric"
-            maxlength="10"
-            placeholder="Enter 10-digit account number"
-            required
-          >
-        </div>
 
-        <button type="submit" id="submitBtn">
-          Submit Application
-        </button>
+      <!-- OTHER BANK -->
+      <div class="form-group">
+        <label for="otherBank">If Other, Add Your Bank Name</label>
+        <input
+          type="text"
+          id="otherBank"
+          placeholder="Enter bank name"
+        >
+      </div>
 
-      </form>
+      <!-- ACCOUNT NAME -->
+      <div class="form-group">
+        <label for="accountName">Account Name</label>
+        <input
+          type="text"
+          id="accountName"
+          placeholder="Enter account name"
+          required
+        >
+      </div>
 
-    </section>
-
-    <!-- Share Button -->
-    <section class="share-section">
-      <button type="button" id="shareBtn">
-        Share Website
+      <!-- APPLICATION BUTTON -->
+      <button type="submit" id="submitBtn">
+        Submit Application
       </button>
-    </section>
+
+    </form>
+
+  </section>
+
+  <!-- SHARE WEBSITE -->
+  <section class="share-section">
+
+    <div class="share-content">
+      <h3>Share With Friends & Family</h3>
+
+      <p>
+        Help others discover this information by sharing this website.
+      </p>
+    </div>
+
+    <button type="button" id="shareBtn">
+      <span>↗</span> Share Website
+    </button>
+
+  </section>
 
   </main>
 
+  <!-- FOOTER -->
   <footer class="site-footer">
-    <p>&copy; <span id="year"></span> APC Grant Application Portal</p>
+    <p>
+      &copy; <span id="year"></span>
+      APC Grant Application Portal
+    </p>
   </footer>
 
   <script src="script.js"></script>
