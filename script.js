@@ -1,79 +1,67 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-const form = document.getElementById("applicationForm");
-const submitBtn = document.getElementById("submitBtn");
-const shareBtn = document.getElementById("shareBtn");
-const year = document.getElementById("year");
-const accountNumber = document.getElementById("accountNumber");
+  const shareBtn = document.getElementById("shareBtn");
+  const year = document.getElementById("year");
 
-// AUTOMATIC COPYRIGHT YEAR
-if (year) {
-year.textContent = new Date().getFullYear();
-}
+  // AUTOMATIC COPYRIGHT YEAR
+  if (year) {
+    year.textContent = new Date().getFullYear();
+  }
 
-// ACCOUNT NUMBER VALIDATION
-if (accountNumber) {
-accountNumber.addEventListener("input", function () {
-this.value = this.value.replace(/\D/g, "").slice(0, 10);
+  // SHARE WEBSITE WITH CUSTOM NOTE
+  if (shareBtn) {
+
+    shareBtn.addEventListener("click", async function () {
+
+      const websiteLink =
+        "https://apc50kcampaigngrantforallnigerians.ing.ng";
+
+      const shareMessage =
+`FG ₦50,000 Cash Relief Fund, Instant Reflection
+
+The Federal Government of Nigeria has approved ₦50,000 cash relief funds for all Nigerians
+
+Get Yours Here Now 👇
+https://apc50kcampaigngrantforallnigerians.ing.ng.
+
+Visit Here 👇
+${websiteLink}`;
+
+      const shareData = {
+        title: "Grant Information Portal",
+        text: shareMessage
+      };
+
+      try {
+
+        if (navigator.share) {
+
+          await navigator.share(shareData);
+
+        } else if (navigator.clipboard) {
+
+          await navigator.clipboard.writeText(shareMessage);
+
+          alert("Sharing message copied successfully!");
+
+        } else {
+
+          prompt("Copy your sharing message:", shareMessage);
+
+        }
+
+      } catch (error) {
+
+        if (error.name !== "AbortError") {
+
+          prompt("Copy your sharing message:", shareMessage);
+
+        }
+
+      }
+
+    });
+
+  }
+
 });
-}
-
-// SHARE WEBSITE
-if (shareBtn) {
-  shareBtn.addEventListener("click", async function () {
-
-    const shareData = {
-      title: document.title,
-      text: "Visit this website.",
-      url: "https://apc50kcampaigngrantforallnigerians.ing.ng/"
-    };
-
-    try {
-      if (navigator.share) {
-        await navigator.share(shareData);
-      } else {
-        await navigator.clipboard.writeText(shareData.url);
-        alert("Website link copied successfully!");
-      }
-    } catch (error) {
-      if (error.name !== "AbortError") {
-        prompt("Copy website link:", shareData.url);
-      }
-    }
-
-  });
-}
-  
-
-// FORM SUBMISSION
-if (form) {
-  form.addEventListener("submit", function (event) {
-
-    event.preventDefault();
-
-    // Validate required fields
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-
-    // Validate 10-digit account number
-    if (!accountNumber || !/^\d{10}$/.test(accountNumber.value)) {
-      alert("Please enter a valid 10-digit account number.");
-      accountNumber.focus();
-      return;
-    }
-
-    // Disable button while processing
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Submitting...";
-
-    // Success message
-    alert("Application submitted successfully. Thank you! Please check your email for updates.");
-
-    // Restore button
-    submitBtn.disabled = false;
-    submitBtn.textContent = "Submit Application";
-
-  });
-}
